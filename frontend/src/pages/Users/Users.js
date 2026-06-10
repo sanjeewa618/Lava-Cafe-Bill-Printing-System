@@ -87,7 +87,7 @@ const Users = () => {
   return (
     <Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-        <Typography variant="h5" sx={{ fontWeight: 800, color: '#FFF' }}>👥 User Management</Typography>
+        <Typography variant="h5" sx={{ fontWeight: 800, color: 'text.primary' }}>👥 User Management</Typography>
         <Button id="add-user-btn" variant="contained" startIcon={<AddIcon />} onClick={openCreate}>Add User</Button>
       </Box>
 
@@ -117,7 +117,7 @@ const Users = () => {
                       <Avatar sx={{ width: 36, height: 36, bgcolor: '#FFC107', color: '#121212', fontSize: '0.9rem', fontWeight: 700 }}>
                         {u.name.charAt(0)}
                       </Avatar>
-                      <Typography variant="body2" sx={{ fontWeight: 600, color: '#FFF' }}>{u.name}</Typography>
+                      <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary' }}>{u.name}</Typography>
                     </Box>
                   </TableCell>
                   <TableCell><Typography variant="body2" color="textSecondary">@{u.username}</Typography></TableCell>
@@ -139,7 +139,7 @@ const Users = () => {
 
       {/* Add/Edit Dialog */}
       <Dialog open={dialog} onClose={() => setDialog(false)} maxWidth="sm" fullWidth
-        PaperProps={{ sx: { bgcolor: '#1A1A1A', border: '1px solid rgba(255,193,7,0.2)' } }}>
+        PaperProps={{ sx: { bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' } }}>
         <DialogTitle sx={{ color: '#FFC107', fontWeight: 700 }}>{editId ? '✏️ Edit User' : '➕ Add User'}</DialogTitle>
         <DialogContent sx={{ pt: '8px !important' }}>
           {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
@@ -178,7 +178,7 @@ const Users = () => {
 
       {/* Reset Password Dialog */}
       <Dialog open={Boolean(resetDialog)} onClose={() => { setResetDialog(null); setError(''); }}
-        PaperProps={{ sx: { bgcolor: '#1A1A1A', border: '1px solid rgba(41,182,246,0.3)' } }}>
+        PaperProps={{ sx: { bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' } }}>
         <DialogTitle sx={{ color: '#29B6F6', fontWeight: 700 }}>🔑 Reset Password - {resetDialog?.name}</DialogTitle>
         <DialogContent>
           {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}

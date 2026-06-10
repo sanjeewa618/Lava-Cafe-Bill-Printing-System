@@ -228,7 +228,7 @@ const Layout = ({ children }) => {
             </Tooltip>
 
             <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}
-              PaperProps={{ sx: { bgcolor: '#1A1A1A', border: '1px solid rgba(255,193,7,0.2)', minWidth: 180 } }}>
+              PaperProps={{ sx: { bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider', minWidth: 180 } }}>
               <MenuItem onClick={() => { navigate('/settings'); handleMenuClose(); }}>
                 <SettingsIcon sx={{ mr: 1.5, fontSize: 18 }} /> Settings
               </MenuItem>
@@ -241,7 +241,16 @@ const Layout = ({ children }) => {
         </AppBar>
 
         {/* Page Content */}
-        <Box component="main" sx={{ flex: 1, p: { xs: 2, md: 3 }, overflow: 'auto' }}>
+        <Box
+          component="main"
+          sx={{
+            flex: 1,
+            p: location.pathname === '/pos' ? 0 : { xs: 2, md: 3 },
+            overflow: location.pathname === '/pos' ? 'hidden' : 'auto',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
           {children}
         </Box>
       </Box>

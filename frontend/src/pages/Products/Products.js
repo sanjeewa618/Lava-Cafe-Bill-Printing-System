@@ -102,7 +102,7 @@ const Products = () => {
   return (
     <Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-        <Typography variant="h5" sx={{ fontWeight: 800, color: '#FFF' }}>🍔 Products</Typography>
+        <Typography variant="h5" sx={{ fontWeight: 800, color: 'text.primary' }}>🍔 Products</Typography>
         {isAdmin && (
           <Button id="add-product-btn" variant="contained" startIcon={<AddIcon />} onClick={openCreate}>
             Add Product
@@ -159,7 +159,7 @@ const Products = () => {
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                       <Typography sx={{ fontSize: '1.4rem' }}>{p.icon}</Typography>
                       <Box>
-                        <Typography variant="body2" sx={{ fontWeight: 600, color: '#FFF' }}>{p.name}</Typography>
+                        <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary' }}>{p.name}</Typography>
                         {p.description && <Typography variant="caption" color="textSecondary">{p.description}</Typography>}
                       </Box>
                     </Box>
@@ -209,7 +209,7 @@ const Products = () => {
 
       {/* Add/Edit Dialog */}
       <Dialog open={dialog} onClose={() => setDialog(false)} maxWidth="sm" fullWidth
-        PaperProps={{ sx: { bgcolor: '#1A1A1A', border: '1px solid rgba(255,193,7,0.2)' } }}>
+        PaperProps={{ sx: { bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' } }}>
         <DialogTitle sx={{ color: '#FFC107', fontWeight: 700 }}>
           {editId ? '✏️ Edit Product' : '➕ Add Product'}
         </DialogTitle>
@@ -255,10 +255,10 @@ const Products = () => {
 
       {/* Delete Confirm */}
       <Dialog open={Boolean(deleteDialog)} onClose={() => setDeleteDialog(null)}
-        PaperProps={{ sx: { bgcolor: '#1A1A1A', border: '1px solid rgba(244,67,54,0.3)' } }}>
+        PaperProps={{ sx: { bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' } }}>
         <DialogTitle sx={{ color: '#F44336', fontWeight: 700 }}>🗑️ Delete Product</DialogTitle>
         <DialogContent>
-          <Typography>Are you sure you want to delete <strong style={{ color: '#FFF' }}>{deleteDialog?.name}</strong>?</Typography>
+          <Typography>Are you sure you want to delete <strong style={{ color: 'text.primary' }}>{deleteDialog?.name}</strong>?</Typography>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setDeleteDialog(null)} sx={{ color: '#888' }}>Cancel</Button>

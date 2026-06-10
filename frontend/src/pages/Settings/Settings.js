@@ -38,7 +38,7 @@ const Settings = () => {
 
   return (
     <Box>
-      <Typography variant="h5" sx={{ fontWeight: 800, color: '#FFF', mb: 3 }}>⚙️ Settings</Typography>
+      <Typography variant="h5" sx={{ fontWeight: 800, color: 'text.primary', mb: 3 }}>⚙️ Settings</Typography>
 
       <Grid container spacing={3}>
         {/* Profile Info */}
@@ -48,7 +48,7 @@ const Settings = () => {
               <Avatar sx={{ width: 80, height: 80, bgcolor: '#FFC107', color: '#121212', fontSize: '2rem', fontWeight: 800, mx: 'auto', mb: 2 }}>
                 {user?.name?.charAt(0)}
               </Avatar>
-              <Typography variant="h6" sx={{ fontWeight: 700, color: '#FFF' }}>{user?.name}</Typography>
+              <Typography variant="h6" sx={{ fontWeight: 700, color: 'text.primary' }}>{user?.name}</Typography>
               <Typography variant="body2" color="textSecondary" sx={{ mb: 1 }}>@{user?.username}</Typography>
               <Typography variant="caption" sx={{ color: '#FFC107', fontWeight: 600, textTransform: 'capitalize', bgcolor: 'rgba(255,193,7,0.1)', px: 1.5, py: 0.5, borderRadius: 10 }}>
                 {user?.role} • {user?.shift} Shift
@@ -66,7 +66,7 @@ const Settings = () => {
                 ].map((info, i) => (
                   <Box key={i} sx={{ display: 'flex', justifyContent: 'space-between', mt: 1.5 }}>
                     <Typography variant="caption" color="textSecondary">{info.label}</Typography>
-                    <Typography variant="caption" sx={{ color: '#FFF', fontWeight: 600 }}>{info.value}</Typography>
+                    <Typography variant="caption" sx={{ color: 'text.primary', fontWeight: 600 }}>{info.value}</Typography>
                   </Box>
                 ))}
               </Box>
@@ -80,7 +80,7 @@ const Settings = () => {
             <CardContent sx={{ p: 3 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 3 }}>
                 <LockIcon sx={{ color: '#FFC107' }} />
-                <Typography variant="h6" sx={{ fontWeight: 700, color: '#FFF' }}>Change Password</Typography>
+                <Typography variant="h6" sx={{ fontWeight: 700, color: 'text.primary' }}>Change Password</Typography>
               </Box>
 
               {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
@@ -131,7 +131,7 @@ const Settings = () => {
           {/* Color Theme Info */}
           <Card sx={{ mt: 3 }}>
             <CardContent sx={{ p: 3 }}>
-              <Typography variant="h6" sx={{ fontWeight: 700, color: '#FFF', mb: 2 }}>🎨 Theme Colors</Typography>
+              <Typography variant="h6" sx={{ fontWeight: 700, color: 'text.primary', mb: 2 }}>🎨 Theme Colors</Typography>
               <Grid container spacing={1.5}>
                 {[
                   { name: 'Primary Yellow', hex: '#FFC107', bg: '#FFC107' },
@@ -144,7 +144,7 @@ const Settings = () => {
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                       <Box sx={{ width: 36, height: 36, borderRadius: 1.5, bgcolor: color.bg, border: color.border || 'none', flexShrink: 0 }} />
                       <Box>
-                        <Typography variant="body2" sx={{ fontWeight: 600, color: '#FFF', fontSize: '0.8rem' }}>{color.name}</Typography>
+                        <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary', fontSize: '0.8rem' }}>{color.name}</Typography>
                         <Typography variant="caption" color="textSecondary">{color.hex}</Typography>
                       </Box>
                     </Box>

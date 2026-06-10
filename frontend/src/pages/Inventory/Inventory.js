@@ -130,7 +130,7 @@ const Inventory = () => {
   return (
     <Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-        <Typography variant="h5" sx={{ fontWeight: 800, color: '#FFF' }}>
+        <Typography variant="h5" sx={{ fontWeight: 800, color: 'text.primary' }}>
           📦 Raw Materials Inventory
         </Typography>
         {isAdmin && (
@@ -220,7 +220,7 @@ const Inventory = () => {
                            item.name.toLowerCase().includes('sugar') ? '🍬' : '📦'}
                         </Typography>
                         <Box>
-                          <Typography variant="body2" sx={{ fontWeight: 600, color: '#FFF' }}>
+                          <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary' }}>
                             {item.name}
                           </Typography>
                           <Typography variant="caption" color="textSecondary">
@@ -323,7 +323,7 @@ const Inventory = () => {
 
       {/* Add/Edit Dialog */}
       <Dialog open={dialog} onClose={() => setDialog(false)} maxWidth="xs" fullWidth
-        PaperProps={{ sx: { bgcolor: '#1A1A1A', border: '1px solid rgba(255,193,7,0.2)' } }}>
+        PaperProps={{ sx: { bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' } }}>
         <DialogTitle sx={{ color: '#FFC107', fontWeight: 700 }}>
           {editId ? '✏️ Edit Material' : '➕ Add Raw Material'}
         </DialogTitle>
@@ -382,11 +382,11 @@ const Inventory = () => {
 
       {/* Delete Dialog */}
       <Dialog open={Boolean(deleteDialog)} onClose={() => setDeleteDialog(null)}
-        PaperProps={{ sx: { bgcolor: '#1A1A1A', border: '1px solid rgba(244,67,54,0.3)' } }}>
+        PaperProps={{ sx: { bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' } }}>
         <DialogTitle sx={{ color: '#F44336', fontWeight: 700 }}>🗑️ Delete Material</DialogTitle>
         <DialogContent>
           <Typography>
-            Are you sure you want to remove <strong style={{ color: '#FFF' }}>{deleteDialog?.name}</strong> from inventory?
+            Are you sure you want to remove <strong style={{ color: 'text.primary' }}>{deleteDialog?.name}</strong> from inventory?
           </Typography>
         </DialogContent>
         <DialogActions>

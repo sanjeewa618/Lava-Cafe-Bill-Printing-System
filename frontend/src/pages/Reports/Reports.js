@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {
   Box, Card, CardContent, Typography, Grid, Select, MenuItem,
   FormControl, InputLabel, Divider, Alert, CircularProgress, Chip,
-  Table, TableBody, TableCell, TableContainer, TableHead, TableRow
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
+  useTheme
 } from '@mui/material';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, PieChart, Pie, Cell, Legend } from 'recharts';
 import api from '../../utils/api';
@@ -10,6 +11,7 @@ import api from '../../utils/api';
 const COLORS = ['#FFC107', '#FF8F00', '#FFD54F', '#FFF8E1', '#FF6F00'];
 
 const Reports = () => {
+  const theme = useTheme();
   const [report, setReport] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -49,13 +51,13 @@ const Reports = () => {
   return (
     <Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-        <Typography variant="h5" sx={{ fontWeight: 800, color: '#FFF' }}>📈 Daily Sales Report</Typography>
+        <Typography variant="h5" sx={{ fontWeight: 800, color: 'text.primary' }}>📈 Daily Sales Report</Typography>
         <input
           type="date"
           value={selectedDate}
           onChange={(e) => setSelectedDate(e.target.value)}
           style={{
-            background: '#1A1A1A', color: '#FFF', border: '1px solid rgba(255,193,7,0.3)',
+            background: theme.palette.background.paper, color: theme.palette.text.primary, border: `1px solid ${theme.palette.divider}`,
             borderRadius: '8px', padding: '8px 12px', fontSize: '14px', outline: 'none',
             fontFamily: 'Outfit, sans-serif', cursor: 'pointer',
           }}
@@ -94,14 +96,14 @@ const Reports = () => {
             <Grid item xs={12} lg={8}>
               <Card>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h6" sx={{ fontWeight: 700, mb: 2.5, color: '#FFF' }}>⏰ Hourly Sales</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 700, mb: 2.5, color: 'text.primary' }}>⏰ Hourly Sales</Typography>
                   {hourlyData.length > 0 ? (
                     <ResponsiveContainer width="100%" height={220}>
                       <BarChart data={hourlyData}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,193,7,0.08)" />
-                        <XAxis dataKey="hour" tick={{ fill: '#888', fontSize: 11 }} axisLine={false} tickLine={false} />
-                        <YAxis tick={{ fill: '#888', fontSize: 11 }} axisLine={false} tickLine={false} />
-                        <Tooltip contentStyle={{ backgroundColor: '#1A1A1A', border: '1px solid rgba(255,193,7,0.3)', borderRadius: 8 }} />
+                        <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.divider} />
+                        <XAxis dataKey="hour" tick={{ fill: theme.palette.text.secondary, fontSize: 11 }} axisLine={false} tickLine={false} />
+                        <YAxis tick={{ fill: theme.palette.text.secondary, fontSize: 11 }} axisLine={false} tickLine={false} />
+                        <Tooltip contentStyle={{ backgroundColor: theme.palette.background.paper, border: `1px solid ${theme.palette.divider}`, borderRadius: 8, color: theme.palette.text.primary }} />
                         <Bar dataKey="orders" fill="#FFC107" radius={[4, 4, 0, 0]} name="Orders" />
                       </BarChart>
                     </ResponsiveContainer>
@@ -118,7 +120,7 @@ const Reports = () => {
             <Grid item xs={12} lg={4}>
               <Card sx={{ height: '100%' }}>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h6" sx={{ fontWeight: 700, mb: 2, color: '#FFF' }}>🧾 Order Types</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 700, mb: 2, color: 'text.primary' }}>🧾 Order Types</Typography>
                   {orderTypeData.length > 0 ? (
                     <ResponsiveContainer width="100%" height={200}>
                       <PieChart>
@@ -127,7 +129,7 @@ const Reports = () => {
                             <Cell key={index} fill={COLORS[index % COLORS.length]} />
                           ))}
                         </Pie>
-                        <Tooltip contentStyle={{ backgroundColor: '#1A1A1A', border: '1px solid rgba(255,193,7,0.3)', borderRadius: 8 }} />
+                        <Tooltip contentStyle={{ backgroundColor: theme.palette.background.paper, border: `1px solid ${theme.palette.divider}`, borderRadius: 8, color: theme.palette.text.primary }} />
                       </PieChart>
                     </ResponsiveContainer>
                   ) : (
@@ -145,7 +147,7 @@ const Reports = () => {
             <Grid item xs={12} md={6}>
               <Card>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h6" sx={{ fontWeight: 700, mb: 2, color: '#FFF' }}>🔥 Top Selling Items</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 700, mb: 2, color: 'text.primary' }}>🔥 Top Selling Items</Typography>
                   <TableContainer>
                     <Table size="small">
                       <TableHead>
@@ -161,11 +163,11 @@ const Reports = () => {
                             <TableCell>
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <Typography variant="caption" sx={{ color: '#FFC107', fontWeight: 700 }}>#{i + 1}</Typography>
-                                <Typography variant="body2" sx={{ color: '#FFF' }}>{item.product_name}</Typography>
+                                <Typography variant="body2" sx={{ color: 'text.primary' }}>{item.product_name}</Typography>
                               </Box>
                             </TableCell>
                             <TableCell align="center"><Chip label={item.total_qty} size="small" sx={{ bgcolor: 'rgba(255,193,7,0.1)', color: '#FFC107', fontWeight: 700 }} /></TableCell>
-                            <TableCell align="right"><Typography variant="body2" sx={{ color: '#FFF', fontWeight: 600 }}>{formatCurrency(item.total_revenue)}</Typography></TableCell>
+                            <TableCell align="right"><Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>{formatCurrency(item.total_revenue)}</Typography></TableCell>
                           </TableRow>
                         ))}
                         {report.top_items.length === 0 && (
@@ -182,12 +184,12 @@ const Reports = () => {
             <Grid item xs={12} md={6}>
               <Card>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h6" sx={{ fontWeight: 700, mb: 2, color: '#FFF' }}>👤 By Cashier</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 700, mb: 2, color: 'text.primary' }}>👤 By Cashier</Typography>
                   {report.by_cashier.length > 0 ? report.by_cashier.map((c, i) => (
-                    <Box key={i} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 1.5, borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                      <Typography variant="body2" sx={{ color: '#FFF', fontWeight: 600 }}>{c.cashier_name}</Typography>
+                    <Box key={i} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 1.5, borderBottom: `1px solid ${theme.palette.divider}` }}>
+                      <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>{c.cashier_name}</Typography>
                       <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
-                        <Chip label={`${c.orders} orders`} size="small" sx={{ bgcolor: 'rgba(255,255,255,0.05)', color: '#888' }} />
+                        <Chip label={`${c.orders} orders`} size="small" sx={{ bgcolor: 'action.hover', color: 'text.secondary' }} />
                         <Typography variant="body2" sx={{ color: '#FFC107', fontWeight: 700 }}>{formatCurrency(c.total)}</Typography>
                       </Box>
                     </Box>
