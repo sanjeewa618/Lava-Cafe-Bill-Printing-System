@@ -41,6 +41,8 @@ function getTokens(mode) {
     cartItemBorder: dark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.07)',
     infoBoxBg:    dark ? 'rgba(255,255,255,0.04)' : '#F4F5F7',
     scrollThumb:  dark ? 'rgba(255,193,7,0.2)' : 'rgba(0,0,0,0.15)',
+    panelShadow:  dark ? 'none' : '0 10px 40px rgba(0,0,0,0.08)',
+    cardShadow:   dark ? '0 4px 12px rgba(0,0,0,0.4)' : '0 10px 25px rgba(0,0,0,0.05)',
   };
 }
 
@@ -242,7 +244,10 @@ export default function POSBilling() {
       setProducts(pr.data.products || []);
       setCategories(cr.data.categories || []);
       setTables(tr.data.tables || []);
-    } catch { setError('Failed to load data.'); }
+    } catch (err) { 
+      console.error('POS load data error: ', err);
+      setError('Failed to load data.'); 
+    }
     finally  { setProductLoading(false); }
   };
 
@@ -337,38 +342,43 @@ export default function POSBilling() {
       flex: 1, display: 'flex', flexDirection: 'column',
       overflow: 'hidden', background: T.panelBg,
       borderRight: `1px solid ${T.border}`,
+      boxShadow: T.panelShadow,
+      margin: '12px 0 12px 12px',
+      borderRadius: 20,
+      zIndex: 1,
     },
-
     // search
     searchBar: {
       display: 'flex', alignItems: 'center', gap: 12,
-      padding: '14px 20px', borderBottom: `1px solid ${T.border}`,
+      padding: '16px 24px', borderBottom: `1px solid ${T.border}`,
       background: T.panelBg,
+      borderTopLeftRadius: 20,
     },
     searchWrap: {
       flex: 1, display: 'flex', alignItems: 'center', gap: 10,
       background: T.inputBg, border: `1px solid ${T.border}`,
-      borderRadius: 10, padding: '9px 14px',
+      borderRadius: 12, padding: '10px 16px',
+      boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.02)',
     },
     searchInput: {
       border: 'none', outline: 'none', background: 'transparent',
-      fontSize: 14, color: T.textMain, width: '100%', fontFamily: 'inherit',
+      fontSize: 15, color: T.textMain, width: '100%', fontFamily: 'inherit',
     },
 
     // category strip
     catStrip: {
-      display: 'flex', gap: 10, padding: '14px 20px',
+      display: 'flex', gap: 12, padding: '16px 24px',
       overflowX: 'auto', borderBottom: `1px solid ${T.border}`,
       scrollbarWidth: 'none', background: T.panelBg,
     },
     catCard: (active) => ({
-      minWidth: 90, textAlign: 'center', cursor: 'pointer',
-      padding: '12px 10px 8px', borderRadius: 14, flexShrink: 0,
+      minWidth: 95, textAlign: 'center', cursor: 'pointer',
+      padding: '14px 12px 10px', borderRadius: 16, flexShrink: 0,
       background: active ? T.catActiveBg : T.inputBg,
       border: active ? `2px solid ${AMBER}` : `2px solid transparent`,
       color: active ? AMBER : T.textSec,
-      boxShadow: active ? `0 0 14px ${AMBER_BG(0.1)}` : 'none',
-      transition: 'all 0.18s',
+      boxShadow: active ? `0 8px 20px ${AMBER_BG(0.2)}` : 'none',
+      transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
     }),
     catName: (active) => ({
       display: 'block', fontSize: 11, fontWeight: 700,
@@ -378,19 +388,19 @@ export default function POSBilling() {
 
     // products grid
     grid: {
-      flex: 1, overflowY: 'auto', padding: '16px 20px',
+      flex: 1, overflowY: 'auto', padding: '20px 24px',
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
-      gap: 14, alignContent: 'start',
+      gridTemplateColumns: 'repeat(auto-fill, minmax(170px, 1fr))',
+      gap: 18, alignContent: 'start',
     },
 
     // product card
     prodCard: (inCart) => ({
       background: inCart ? (mode === 'dark' ? 'rgba(255,193,7,0.07)' : AMBER_BG(0.06)) : T.cardBg,
       border: inCart ? `2px solid ${AMBER}` : `1px solid ${T.borderPlain}`,
-      borderRadius: 16, overflow: 'hidden', cursor: 'pointer',
-      transition: 'all 0.2s',
-      boxShadow: inCart ? `0 4px 18px ${AMBER_BG(0.18)}` : (mode === 'dark' ? '0 2px 8px rgba(0,0,0,0.25)' : '0 2px 8px rgba(0,0,0,0.06)'),
+      borderRadius: 18, overflow: 'hidden', cursor: 'pointer',
+      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+      boxShadow: inCart ? `0 8px 24px ${AMBER_BG(0.25)}` : T.cardShadow,
       position: 'relative',
     }),
     prodImgWrap: {
@@ -439,143 +449,157 @@ export default function POSBilling() {
 
     // ── RIGHT ──
     right: {
-      width: 360, minWidth: 320,
+      width: 380, minWidth: 340,
       display: 'flex', flexDirection: 'column',
       background: T.panelBg, overflow: 'hidden',
+      margin: '12px 12px 12px 0',
+      borderRadius: 20,
+      boxShadow: T.panelShadow,
     },
     rightHeader: {
-      padding: '16px 20px 14px',
+      padding: '20px 24px 16px',
       borderBottom: `1px solid ${T.border}`,
+      background: T.panelBg,
     },
     titleRow: {
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      fontSize: 18, fontWeight: 800, color: AMBER,
+      fontSize: 20, fontWeight: 900, color: AMBER,
+      letterSpacing: '-0.02em',
     },
-    titleSub: { fontSize: 12, color: T.textSec, marginTop: 2 },
+    titleSub: { fontSize: 13, color: T.textSec, marginTop: 4, fontWeight: 500 },
     orderTabs: {
-      display: 'flex', gap: 5, marginTop: 12,
-      background: T.orderTabBg, borderRadius: 10, padding: 4,
+      display: 'flex', gap: 6, marginTop: 16,
+      background: T.orderTabBg, borderRadius: 12, padding: 5,
     },
     orderTab: (active) => ({
       flex: 1, background: active ? T.orderTabActiveBg : 'transparent',
       border: active ? `1px solid ${T.orderTabActiveBorder}` : '1px solid transparent',
-      borderRadius: 8, color: active ? AMBER : T.textSec,
-      fontWeight: active ? 700 : 500, fontSize: 11.5,
-      padding: '7px 4px', cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.18s',
+      borderRadius: 10, color: active ? AMBER : T.textSec,
+      fontWeight: active ? 800 : 500, fontSize: 12,
+      padding: '9px 4px', cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.2s',
+      boxShadow: active ? '0 2px 8px rgba(0,0,0,0.04)' : 'none',
     }),
     tableSelect: {
       width: '100%', border: `1px solid ${T.border}`,
-      borderRadius: 10, padding: '9px 12px',
-      fontSize: 13, color: T.textMain, background: T.inputBg,
-      outline: 'none', fontFamily: 'inherit', marginTop: 10,
+      borderRadius: 12, padding: '10px 14px',
+      fontSize: 14, color: T.textMain, background: T.inputBg,
+      outline: 'none', fontFamily: 'inherit', marginTop: 12,
+      boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.01)',
     },
 
     // cart list
     cartList: {
-      flex: 1, overflowY: 'auto', padding: '8px 20px',
+      flex: 1, overflowY: 'auto', padding: '12px 24px',
       display: 'flex', flexDirection: 'column',
     },
     cartItem: {
-      display: 'flex', alignItems: 'center', gap: 10,
-      padding: '10px 0', borderBottom: `1px solid ${T.cartItemBorder}`,
+      display: 'flex', alignItems: 'center', gap: 14,
+      padding: '14px 0', borderBottom: `1px solid ${T.cartItemBorder}`,
     },
     cartImg: {
-      width: 48, height: 48, borderRadius: 10, objectFit: 'cover',
+      width: 52, height: 52, borderRadius: 12, objectFit: 'cover',
       flexShrink: 0, border: `1px solid ${T.border}`, background: T.inputBg,
+      boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
     },
     cartInfo: { flex: 1, minWidth: 0 },
     cartItemName: {
-      fontSize: 12.5, fontWeight: 700, color: T.textMain,
-      lineHeight: 1.3, marginBottom: 4,
+      fontSize: 13, fontWeight: 700, color: T.textMain,
+      lineHeight: 1.3, marginBottom: 5,
       display: '-webkit-box', WebkitLineClamp: 2,
       WebkitBoxOrient: 'vertical', overflow: 'hidden',
     },
     cartItemRow: {
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
     },
-    cartPriceLabel: { fontSize: 11.5, color: T.textSec },
+    cartPriceLabel: { fontSize: 12, color: T.textSec },
     cartQtyBadge: {
       background: AMBER_BG(0.12), color: AMBER,
-      fontWeight: 800, fontSize: 10.5,
-      padding: '1px 7px', borderRadius: 20, marginLeft: 5,
+      fontWeight: 800, fontSize: 11,
+      padding: '2px 8px', borderRadius: 20, marginLeft: 6,
     },
     // qty controls inside cart
     cartQtyRow: {
-      display: 'flex', alignItems: 'center', gap: 6, marginTop: 5,
+      display: 'flex', alignItems: 'center', gap: 8, marginTop: 6,
     },
     cartQtyBtn: (type) => ({
-      width: 24, height: 24, borderRadius: '50%', border: 'none',
+      width: 26, height: 26, borderRadius: '50%', border: 'none',
       background: type === 'remove' ? 'rgba(244,67,54,0.12)' : AMBER_BG(0.15),
       color: type === 'remove' ? ERROR_CLR : AMBER,
       cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
-      fontSize: 15, fontWeight: 700, fontFamily: 'inherit', flexShrink: 0,
+      fontSize: 16, fontWeight: 700, fontFamily: 'inherit', flexShrink: 0,
+      transition: 'all 0.15s',
     }),
     cartQtyNum: {
-      fontSize: 13, fontWeight: 800, color: T.textMain,
-      minWidth: 20, textAlign: 'center',
+      fontSize: 14, fontWeight: 800, color: T.textMain,
+      minWidth: 22, textAlign: 'center',
     },
-    cartItemTotal: { fontSize: 13, fontWeight: 800, color: AMBER, marginLeft: 'auto' },
+    cartItemTotal: { fontSize: 14, fontWeight: 900, color: AMBER, marginLeft: 'auto' },
 
     emptyCart: {
-      textAlign: 'center', padding: '40px 0', color: T.textDim,
+      textAlign: 'center', padding: '60px 0', color: T.textDim,
     },
 
     // summary
     summaryBox: {
-      padding: '12px 20px 0', borderTop: `1px solid ${T.summaryBorder}`,
+      padding: '16px 24px 0', borderTop: `1px solid ${T.summaryBorder}`,
+      background: T.panelBg,
     },
     discLabel: {
-      fontSize: 10.5, fontWeight: 700, color: T.textDim,
-      display: 'block', marginBottom: 4,
-      textTransform: 'uppercase', letterSpacing: 0.8,
+      fontSize: 11, fontWeight: 800, color: T.textDim,
+      display: 'block', marginBottom: 6,
+      textTransform: 'uppercase', letterSpacing: 1,
     },
     discInput: {
       width: '100%', border: `1px solid ${T.border}`,
-      borderRadius: 10, padding: '8px 12px',
-      fontSize: 13, color: T.textMain, background: T.inputBg,
+      borderRadius: 12, padding: '10px 14px',
+      fontSize: 14, color: T.textMain, background: T.inputBg,
       outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box',
+      boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.01)',
     },
     sumRow: {
       display: 'flex', justifyContent: 'space-between',
-      fontSize: 13, color: T.textSec, marginTop: 8,
+      fontSize: 14, color: T.textSec, marginTop: 10,
+      fontWeight: 500,
     },
     sumTotalRow: {
       display: 'flex', justifyContent: 'space-between',
-      fontSize: 15, fontWeight: 800, color: T.textMain,
-      padding: '10px 0 8px',
-      borderTop: `1px dashed ${T.border}`, marginTop: 6,
+      fontSize: 18, fontWeight: 900, color: T.textMain,
+      padding: '14px 0 12px',
+      borderTop: `2px dashed ${T.border}`, marginTop: 10,
     },
 
     // payment
-    paySection: { padding: '0 20px 10px' },
+    paySection: { padding: '10px 24px 12px' },
     payLabel: {
-      fontSize: 10.5, fontWeight: 700, color: T.textDim,
-      textTransform: 'uppercase', letterSpacing: 1,
-      marginBottom: 7, display: 'block',
+      fontSize: 11, fontWeight: 800, color: T.textDim,
+      textTransform: 'uppercase', letterSpacing: 1.2,
+      marginBottom: 10, display: 'block',
     },
-    payMethods: { display: 'flex', gap: 8 },
+    payMethods: { display: 'flex', gap: 10 },
     payBtn: (active) => ({
       flex: 1, display: 'flex', flexDirection: 'column',
-      alignItems: 'center', gap: 5, padding: '10px 4px',
+      alignItems: 'center', gap: 6, padding: '12px 6px',
       background: active ? T.payActiveBg : T.payInactiveBg,
       border: active ? `2px solid ${AMBER}` : `2px solid ${T.payInactiveBorder}`,
-      borderRadius: 12, cursor: 'pointer',
+      borderRadius: 14, cursor: 'pointer',
       color: active ? AMBER : T.textSec,
-      fontSize: 10, fontWeight: 700, fontFamily: 'inherit', transition: 'all 0.18s',
+      fontSize: 11, fontWeight: 800, fontFamily: 'inherit', transition: 'all 0.2s',
+      boxShadow: active ? `0 4px 12px ${AMBER_BG(0.15)}` : 'none',
     }),
 
     // place order
-    placeSection: { padding: '8px 20px 16px' },
+    placeSection: { padding: '8px 24px 20px' },
     placeBtn: (disabled) => ({
       width: '100%',
       background: disabled ? (mode === 'dark' ? 'rgba(255,193,7,0.18)' : 'rgba(255,193,7,0.3)') : 'linear-gradient(135deg, #FFC107 0%, #FF8F00 100%)',
       color: disabled ? 'rgba(0,0,0,0.35)' : '#000',
-      border: 'none', borderRadius: 14,
-      fontSize: 15, fontWeight: 800, padding: '15px 0',
+      border: 'none', borderRadius: 16,
+      fontSize: 16, fontWeight: 900, padding: '17px 0',
       cursor: disabled ? 'not-allowed' : 'pointer',
-      fontFamily: 'inherit', letterSpacing: 0.3,
-      boxShadow: disabled ? 'none' : '0 6px 20px rgba(255,193,7,0.3)',
-      transition: 'all 0.2s',
+      fontFamily: 'inherit', letterSpacing: 0.5,
+      boxShadow: disabled ? 'none' : '0 8px 24px rgba(255,193,7,0.35)',
+      transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+      textTransform: 'uppercase',
     }),
 
     // alerts

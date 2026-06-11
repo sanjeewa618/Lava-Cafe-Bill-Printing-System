@@ -12,7 +12,16 @@ import api from '../../utils/api';
 import { useAuth } from '../../context/AuthContext';
 
 const StatCard = ({ title, value, icon, color, subtitle }) => (
-  <Card sx={{ height: '100%', position: 'relative', overflow: 'hidden' }}>
+  <Card sx={{ 
+    height: '100%', 
+    position: 'relative', 
+    overflow: 'hidden',
+    boxShadow: (theme) => theme.palette.mode === 'light' 
+      ? '0 10px 30px rgba(0,0,0,0.06)' 
+      : '0 8px 32px rgba(0,0,0,0.2)',
+    borderRadius: 2,
+    border: (theme) => `1px solid ${theme.palette.mode === 'light' ? 'rgba(0,0,0,0.03)' : 'rgba(255,255,255,0.05)'}`,
+  }}>
     <Box sx={{
       position: 'absolute', right: -20, top: -20,
       width: 100, height: 100, borderRadius: '50%',
@@ -70,12 +79,67 @@ const Dashboard = () => {
 
   return (
     <Box>
+      <style>{`
+        @keyframes slideInLeft {
+          from { transform: translateX(-100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+        .slide-in-greeting {
+          animation: slideInLeft 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+      `}</style>
       {/* Header */}
-      <Box sx={{ mb: 4 }}>
-        <Typography variant="h4" sx={{ fontWeight: 800, color: 'text.primary' }}>
-          Good {new Date().getHours() < 12 ? 'Morning' : new Date().getHours() < 17 ? 'Afternoon' : 'Evening'}, {user?.name?.split(' ')[0]}! 👋
-        </Typography>
-        <Typography variant="body1" sx={{ color: 'text.secondary', mt: 0.5 }}>
+      <Box sx={{ mb: 4, position: 'relative' }}>
+        <Box 
+          sx={{ 
+            display: 'inline-flex', 
+            alignItems: 'center', 
+            gap: 1.2, 
+            mb: 1.5, 
+            px: 2, 
+            py: 0.5, 
+            borderRadius: '50px', 
+            background: (theme) => theme.palette.mode === 'light' ? 'rgba(255, 193, 7, 0.15)' : 'rgba(255, 193, 7, 0.05)', 
+            border: '1px solid rgba(255, 193, 7, 0.3)',
+            boxShadow: '0 4px 10px rgba(255, 193, 7, 0.1)'
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>☕</Box>
+          <Typography 
+            variant="subtitle2" 
+            sx={{ 
+              fontWeight: 800, 
+              background: 'linear-gradient(135deg, #FF8F00 0%, #FFB300 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              fontSize: '0.75rem',
+              display: 'block',
+              pt: '2px'
+            }}
+          >
+            Welcome to Lava Cafe POS
+          </Typography>
+        </Box>
+        
+        <Box sx={{ overflow: 'hidden' }}>
+          <Typography 
+            variant="h4" 
+            className="slide-in-greeting"
+            sx={{ 
+              fontWeight: 900, 
+              color: 'text.primary',
+              fontFamily: "'Outfit', sans-serif",
+              letterSpacing: '-0.03em',
+              textTransform: 'capitalize',
+            }}
+          >
+            Good {new Date().getHours() < 12 ? 'Morning' : new Date().getHours() < 17 ? 'Afternoon' : 'Evening'}, {user?.name?.split(' ')[0]}! 👋
+          </Typography>
+        </Box>
+
+        <Typography variant="body1" sx={{ color: 'text.secondary', mt: 0.5, fontWeight: 500 }}>
           {new Date().toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
         </Typography>
       </Box>
