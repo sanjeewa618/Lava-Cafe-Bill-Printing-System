@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
+const { port: PORT } = require('./config/env');
+const ensureDb = require('./config/ensureDb');
 
 const app = express();
 
@@ -36,10 +37,15 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Internal server error.' });
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`🌋 Lava Cafe POS Server running on port ${PORT}`);
   console.log(`📡 API: http://localhost:${PORT}/api`);
+  try {
+    await ensureDb();
+  } catch (err) {
+    console.error('❌ Database startup check failed:', err.message);
+    console.error('   Run: npm run db:init');
+  }
 });
 
 module.exports = app;

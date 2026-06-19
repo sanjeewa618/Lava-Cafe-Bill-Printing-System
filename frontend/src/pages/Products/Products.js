@@ -157,7 +157,22 @@ const Products = () => {
                 <TableRow key={p.id}>
                   <TableCell>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                      <Typography sx={{ fontSize: '1.4rem' }}>{p.icon}</Typography>
+                      <Box
+                        component="img"
+                        src={p.image_url || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100&q=80'}
+                        alt={p.name}
+                        sx={{
+                          width: 40,
+                          height: 40,
+                          borderRadius: '50%',
+                          objectFit: 'cover',
+                          border: '1px solid rgba(255,193,7,0.3)',
+                          bgcolor: 'background.paper',
+                        }}
+                        onError={(e) => {
+                          e.target.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100&q=80';
+                        }}
+                      />
                       <Box>
                         <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary' }}>{p.name}</Typography>
                         {p.description && <Typography variant="caption" color="textSecondary">{p.description}</Typography>}

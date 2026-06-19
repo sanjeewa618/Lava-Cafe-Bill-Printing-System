@@ -49,123 +49,64 @@ function getTokens(mode) {
 // ─── Category SVG Icons ───────────────────────────────────────────────
 const CAT_SVGS = {
   all: (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="4" y="4" width="10" height="10" rx="2.5"/>
-      <rect x="18" y="4" width="10" height="10" rx="2.5"/>
-      <rect x="4" y="18" width="10" height="10" rx="2.5"/>
-      <rect x="18" y="18" width="10" height="10" rx="2.5"/>
-    </svg>
-  ),
-  breakfast: (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <ellipse cx="16" cy="18" rx="11" ry="9"/>
-      <circle cx="13" cy="16" r="3.5"/>
-      <path d="M19 21c1.5-1.5 4-1.5 5 0"/>
-      <path d="M5 26h22" strokeWidth="1.4"/>
-    </svg>
-  ),
-  soup: (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M7 15h18l-2.5 9H9.5L7 15z"/>
-      <path d="M5 15h22"/>
-      <path d="M12 9c0-3 4-3 4-6M18 9c0-3 4-3 4-6" strokeWidth="1.5"/>
-    </svg>
-  ),
-  pasta: (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <ellipse cx="16" cy="22" rx="12" ry="5"/>
-      <path d="M9 22c0-7 3.5-13 7-13s7 6 7 13"/>
-      <path d="M13 9c1-2.5 2-4 3-4s2 1.5 3 4"/>
-    </svg>
-  ),
-  main: (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="16" cy="18" rx="11" ry="9"/>
-      <path d="M16 7v3M6 18H3M29 18h-3"/>
-      <circle cx="16" cy="18" r="5"/>
-    </svg>
-  ),
-  burger: (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M7 14c0-6 3-10 9-10s9 4 9 10"/>
-      <path d="M5 14h22M5 19h22"/>
-      <path d="M7 23c0 3 2 5 9 5s9-2 9-5"/>
-      <path d="M7 19c0-1 1-2 2-2h16c1 0 2 1 2 2"/>
-    </svg>
-  ),
-  juice: (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M11 6h10l-2 19H13L11 6z"/>
-      <path d="M9 6h14"/>
-      <circle cx="16" cy="15" r="2.5"/>
-      <path d="M22 4c1-1.5 3-1 3 1"/>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/>
     </svg>
   ),
   beverage: (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M9 5h14l-2.5 21H11.5L9 5z"/>
-      <path d="M7 5h18"/>
-      <path d="M22 9h4l-2 7h-2"/>
-      <path d="M13 15c1 2 5 2 6 0"/>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17 8h1a4 4 0 1 1 0 8h-1M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/>
+      <line x1="6" y1="2" x2="6" y2="4"/>
+      <line x1="10" y1="2" x2="10" y2="4"/>
+      <line x1="14" y1="2" x2="14" y2="4"/>
     </svg>
   ),
   dessert: (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M9 19c0-6 2-13 7-13s7 7 7 13"/>
-      <rect x="7" y="19" width="18" height="5" rx="2.5"/>
-      <path d="M16 6V3M12 5l1.5 2M20 5l-1.5 2"/>
-    </svg>
-  ),
-  pizza: (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M16 4L4 28h24L16 4z"/>
-      <circle cx="16" cy="17" r="2"/>
-      <circle cx="11" cy="23" r="1.5"/><circle cx="21" cy="23" r="1.5"/>
-    </svg>
-  ),
-  salad: (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M6 21h20l-2.5 6H8.5L6 21z"/>
-      <path d="M4 21h24"/>
-      <path d="M10 14c2-5 11-7 13-2"/>
-      <path d="M14 9c0-5 7-5 7 0"/>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2a9 9 0 0 0-9 9M21 11a9 9 0 0 0-9-9v9Z"/>
+      <path d="M3 11h18M5 11v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3"/>
+      <circle cx="12" cy="5" r="1.5" fill="currentColor"/>
     </svg>
   ),
   food: (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M8 5v22M8 5c0 0 9 3 9 8.5S8 22 8 22"/>
-      <path d="M18 5l5 9-5 9M23 5v22"/>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v4M21 2v20M17 2v2c0 2.2 1.8 4 4 4M21 11H17v11"/>
+    </svg>
+  ),
+  juice: (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 3h12l-2 18H8L6 3Z"/>
+      <line x1="6" y1="8" x2="18" y2="8"/>
+      <line x1="15" y1="3" x2="19" y2="1"/>
+      <circle cx="12" cy="14" r="2"/>
     </svg>
   ),
   snack: (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="9" y="14" width="14" height="12" rx="2.5"/>
-      <path d="M13 14V10a3 3 0 016 0v4"/>
-      <line x1="9" y1="20" x2="23" y2="20"/>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="3"/>
+      <path d="M12 3v18M3 12h18"/>
+      <circle cx="7.5" cy="7.5" r="1.5" fill="currentColor"/>
+      <circle cx="16.5" cy="7.5" r="1.5" fill="currentColor"/>
+      <circle cx="7.5" cy="16.5" r="1.5" fill="currentColor"/>
+      <circle cx="16.5" cy="16.5" r="1.5" fill="currentColor"/>
     </svg>
   ),
   default: (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="16" cy="16" r="11"/>
-      <path d="M11 16h10M16 11v10"/>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <line x1="12" y1="8" x2="12" y2="16"/>
+      <line x1="8" y1="12" x2="16" y2="12"/>
     </svg>
   ),
 };
 
 function getCatSVG(cat) {
   const lower = (cat?.name || '').toLowerCase();
-  if (lower.includes('breakfast')) return CAT_SVGS.breakfast;
-  if (lower.includes('soup'))      return CAT_SVGS.soup;
-  if (lower.includes('pasta'))     return CAT_SVGS.pasta;
-  if (lower.includes('main'))      return CAT_SVGS.main;
-  if (lower.includes('burger'))    return CAT_SVGS.burger;
   if (lower.includes('juice'))     return CAT_SVGS.juice;
-  if (lower.includes('drink') || lower.includes('beverage')) return CAT_SVGS.beverage;
-  if (lower.includes('dessert') || lower.includes('sweet'))  return CAT_SVGS.dessert;
-  if (lower.includes('pizza'))     return CAT_SVGS.pizza;
-  if (lower.includes('salad'))     return CAT_SVGS.salad;
-  if (lower.includes('snack'))     return CAT_SVGS.snack;
-  if (lower.includes('food'))      return CAT_SVGS.food;
+  if (lower.includes('drink') || lower.includes('beverage') || lower.includes('coffee') || lower.includes('tea')) return CAT_SVGS.beverage;
+  if (lower.includes('dessert') || lower.includes('sweet') || lower.includes('cake') || lower.includes('brownie'))  return CAT_SVGS.dessert;
+  if (lower.includes('snack') || lower.includes('fries') || lower.includes('biscuit'))     return CAT_SVGS.snack;
+  if (lower.includes('food') || lower.includes('burger') || lower.includes('pizza') || lower.includes('meal') || lower.includes('chicken'))      return CAT_SVGS.food;
   return CAT_SVGS.default;
 }
 
@@ -402,21 +343,23 @@ export default function POSBilling() {
       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       boxShadow: inCart ? `0 8px 24px ${AMBER_BG(0.25)}` : T.cardShadow,
       position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: 280,
     }),
     prodImgWrap: {
-      width: '100%', height: 120, overflow: 'hidden',
+      width: '100%', height: 150, overflow: 'hidden',
       background: T.inputBg,
       display: 'flex', alignItems: 'center', justifyContent: 'center',
     },
     prodImg: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' },
-    prodBody: { padding: '10px 12px 12px' },
+    prodBody: { padding: '10px 12px 12px', display: 'flex', flexDirection: 'column', flexGrow: 1, justifyContent: 'space-between' },
     prodName: {
-      fontSize: 12.5, fontWeight: 700, color: T.textMain,
-      lineHeight: 1.3, marginBottom: 4,
-      display: '-webkit-box', WebkitLineClamp: 2,
-      WebkitBoxOrient: 'vertical', overflow: 'hidden',
+      fontSize: 14, fontWeight: 800, color: T.textMain,
+      lineHeight: 1.4, marginBottom: 6,
+      fontFamily: "'Outfit', sans-serif",
     },
-    prodPrice: { fontSize: 13.5, fontWeight: 800, color: AMBER, marginBottom: 10 },
+    prodPrice: { fontSize: 15, fontWeight: 900, color: '#FFB300', marginBottom: 12 },
 
     // qty row on card (when in cart)
     cardQtyRow: {
@@ -433,12 +376,16 @@ export default function POSBilling() {
     }),
     addCartBtn: {
       width: '100%',
-      background: AMBER_BG(0.12),
-      border: `1px solid rgba(255,193,7,0.3)`,
-      borderRadius: 9, color: AMBER,
-      fontWeight: 700, fontSize: 12.5,
-      padding: '7px 0', cursor: 'pointer',
-      fontFamily: 'inherit', transition: 'all 0.15s',
+      background: 'rgba(255,193,7,0.12)',
+      border: `1px solid rgba(255,193,7,0.25)`,
+      borderRadius: 14,
+      color: '#FFB300',
+      fontWeight: 800,
+      fontSize: 13,
+      padding: '9px 0',
+      cursor: 'pointer',
+      fontFamily: 'inherit',
+      transition: 'all 0.2s ease',
     },
     lowStock: {
       position: 'absolute', top: 8, left: 8,
@@ -494,16 +441,16 @@ export default function POSBilling() {
     },
     cartItem: {
       display: 'flex', alignItems: 'center', gap: 14,
-      padding: '14px 0', borderBottom: `1px solid ${T.cartItemBorder}`,
+      padding: '20px 0', borderBottom: `1px solid ${T.cartItemBorder}`,
     },
     cartImg: {
-      width: 52, height: 52, borderRadius: 12, objectFit: 'cover',
+      width: 58, height: 58, borderRadius: 12, objectFit: 'cover',
       flexShrink: 0, border: `1px solid ${T.border}`, background: T.inputBg,
       boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
     },
     cartInfo: { flex: 1, minWidth: 0 },
     cartItemName: {
-      fontSize: 13, fontWeight: 700, color: T.textMain,
+      fontSize: 14, fontWeight: 700, color: T.textMain,
       lineHeight: 1.3, marginBottom: 5,
       display: '-webkit-box', WebkitLineClamp: 2,
       WebkitBoxOrient: 'vertical', overflow: 'hidden',
@@ -541,63 +488,63 @@ export default function POSBilling() {
 
     // summary
     summaryBox: {
-      padding: '16px 24px 0', borderTop: `1px solid ${T.summaryBorder}`,
+      padding: '10px 24px 0', borderTop: `1px solid ${T.summaryBorder}`,
       background: T.panelBg,
     },
     discLabel: {
-      fontSize: 11, fontWeight: 800, color: T.textDim,
-      display: 'block', marginBottom: 6,
+      fontSize: 10, fontWeight: 800, color: T.textDim,
+      display: 'block', marginBottom: 4,
       textTransform: 'uppercase', letterSpacing: 1,
     },
     discInput: {
       width: '100%', border: `1px solid ${T.border}`,
-      borderRadius: 12, padding: '10px 14px',
-      fontSize: 14, color: T.textMain, background: T.inputBg,
+      borderRadius: 10, padding: '6px 12px',
+      fontSize: 13, color: T.textMain, background: T.inputBg,
       outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box',
       boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.01)',
     },
     sumRow: {
       display: 'flex', justifyContent: 'space-between',
-      fontSize: 14, color: T.textSec, marginTop: 10,
+      fontSize: 13, color: T.textSec, marginTop: 6,
       fontWeight: 500,
     },
     sumTotalRow: {
       display: 'flex', justifyContent: 'space-between',
-      fontSize: 18, fontWeight: 900, color: T.textMain,
-      padding: '14px 0 12px',
-      borderTop: `2px dashed ${T.border}`, marginTop: 10,
+      fontSize: 16, fontWeight: 900, color: T.textMain,
+      padding: '8px 0 6px',
+      borderTop: `2px dashed ${T.border}`, marginTop: 6,
     },
 
     // payment
-    paySection: { padding: '10px 24px 12px' },
+    paySection: { padding: '6px 24px 8px' },
     payLabel: {
-      fontSize: 11, fontWeight: 800, color: T.textDim,
+      fontSize: 10, fontWeight: 800, color: T.textDim,
       textTransform: 'uppercase', letterSpacing: 1.2,
-      marginBottom: 10, display: 'block',
+      marginBottom: 6, display: 'block',
     },
-    payMethods: { display: 'flex', gap: 10 },
+    payMethods: { display: 'flex', gap: 8 },
     payBtn: (active) => ({
       flex: 1, display: 'flex', flexDirection: 'column',
-      alignItems: 'center', gap: 6, padding: '12px 6px',
+      alignItems: 'center', gap: 4, padding: '8px 4px',
       background: active ? T.payActiveBg : T.payInactiveBg,
       border: active ? `2px solid ${AMBER}` : `2px solid ${T.payInactiveBorder}`,
-      borderRadius: 14, cursor: 'pointer',
+      borderRadius: 12, cursor: 'pointer',
       color: active ? AMBER : T.textSec,
-      fontSize: 11, fontWeight: 800, fontFamily: 'inherit', transition: 'all 0.2s',
+      fontSize: 10, fontWeight: 800, fontFamily: 'inherit', transition: 'all 0.2s',
       boxShadow: active ? `0 4px 12px ${AMBER_BG(0.15)}` : 'none',
     }),
 
     // place order
-    placeSection: { padding: '8px 24px 20px' },
+    placeSection: { padding: '4px 24px 12px' },
     placeBtn: (disabled) => ({
       width: '100%',
       background: disabled ? (mode === 'dark' ? 'rgba(255,193,7,0.18)' : 'rgba(255,193,7,0.3)') : 'linear-gradient(135deg, #FFC107 0%, #FF8F00 100%)',
       color: disabled ? 'rgba(0,0,0,0.35)' : '#000',
-      border: 'none', borderRadius: 16,
-      fontSize: 16, fontWeight: 900, padding: '17px 0',
+      border: 'none', borderRadius: 12,
+      fontSize: 14, fontWeight: 900, padding: '12px 0',
       cursor: disabled ? 'not-allowed' : 'pointer',
       fontFamily: 'inherit', letterSpacing: 0.5,
-      boxShadow: disabled ? 'none' : '0 8px 24px rgba(255,193,7,0.35)',
+      boxShadow: disabled ? 'none' : '0 6px 18px rgba(255,193,7,0.3)',
       transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
       textTransform: 'uppercase',
     }),
@@ -798,22 +745,25 @@ export default function POSBilling() {
                     <div style={css.prodName}>{product.name}</div>
                     <div style={css.prodPrice}>Rs. {Number(product.price).toLocaleString()}</div>
 
-                    {inCart ? (
-                      /* qty controls on card */
-                      <div style={css.cardQtyRow} onClick={e => e.stopPropagation()}>
-                        <button className="pos-qbtn" style={css.cardQtyBtn('remove')}
-                          onClick={e => { e.stopPropagation(); updateQty(product.id, -1); }}>−</button>
-                        <span style={{ fontWeight:800, fontSize:14, color: T.textMain }}>{inCart.qty}</span>
-                        <button className="pos-qbtn" style={css.cardQtyBtn('add')}
-                          onClick={e => { e.stopPropagation(); updateQty(product.id, 1); }}>+</button>
-                      </div>
-                    ) : (
-                      /* Add to Cart button */
-                      <button className="pos-addbtn" style={css.addCartBtn}
-                        onClick={e => { e.stopPropagation(); addToCart(product); }}>
-                        Add to Cart
-                      </button>
-                    )}
+                    {/* Always render the Add to Cart button/qty row at the bottom of the card, and style it nicely */}
+                    <div style={{ marginTop: 'auto' }}>
+                      {inCart ? (
+                        /* qty controls on card */
+                        <div style={css.cardQtyRow} onClick={e => e.stopPropagation()}>
+                          <button className="pos-qbtn" style={css.cardQtyBtn('remove')}
+                            onClick={e => { e.stopPropagation(); updateQty(product.id, -1); }}>−</button>
+                          <span style={{ fontWeight:800, fontSize:14, color: T.textMain }}>{inCart.qty}</span>
+                          <button className="pos-qbtn" style={css.cardQtyBtn('add')}
+                            onClick={e => { e.stopPropagation(); updateQty(product.id, 1); }}>+</button>
+                        </div>
+                      ) : (
+                        /* Add to Cart button */
+                        <button className="pos-addbtn" style={css.addCartBtn}
+                          onClick={e => { e.stopPropagation(); addToCart(product); }}>
+                          Add to Cart
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               );

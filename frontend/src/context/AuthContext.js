@@ -8,12 +8,29 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('lava_cafe_user');
-    const token = localStorage.getItem('lava_cafe_token');
-    if (storedUser && token) {
-      setUser(JSON.parse(storedUser));
-    }
-    setLoading(false);
+    const restoreSession = async () => {
+      const storedUser = localStorage.getItem('lava_cafe_user');
+      const token = localStorage.getItem('lava_cafe_token');
+
+      if (!storedUser || !token) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const res = await api.get('/auth/profile');
+        setUser(res.data.user);
+        localStorage.setItem('lava_cafe_user', JSON.stringify(res.data.user));
+      } catch {
+        localStorage.removeItem('lava_cafe_token');
+        localStorage.removeItem('lava_cafe_user');
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    restoreSession();
   }, []);
 
   const login = async (username, password) => {

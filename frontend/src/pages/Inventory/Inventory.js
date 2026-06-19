@@ -211,14 +211,30 @@ const Inventory = () => {
                   }}>
                     <TableCell>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                        <Typography sx={{ fontSize: '1.4rem' }}>
-                          {item.name.toLowerCase().includes('cheese') ? '🧀' :
-                           item.name.toLowerCase().includes('bread') ? '🍞' :
-                           item.name.toLowerCase().includes('chicken') ? '🍗' :
-                           item.name.toLowerCase().includes('orange') ? '🍊' :
-                           item.name.toLowerCase().includes('milk') ? '🥛' :
-                           item.name.toLowerCase().includes('sugar') ? '🍬' : '📦'}
-                        </Typography>
+                        <Box
+                          component="img"
+                          src={
+                            item.name.toLowerCase().includes('cheese') ? 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?w=100&q=80' :
+                            item.name.toLowerCase().includes('bread') ? 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=100&q=80' :
+                            item.name.toLowerCase().includes('chicken') ? 'https://images.unsplash.com/photo-1598103442097-8b74394b95c3?w=100&q=80' :
+                            item.name.toLowerCase().includes('orange') || item.name.toLowerCase().includes('juice') ? 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=100&q=80' :
+                            item.name.toLowerCase().includes('milk') || item.name.toLowerCase().includes('coffee') ? 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=100&q=80' :
+                            item.name.toLowerCase().includes('sugar') || item.name.toLowerCase().includes('sweet') ? 'https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=100&q=80' :
+                            'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100&q=80'
+                          }
+                          alt={item.name}
+                          sx={{
+                            width: 40,
+                            height: 40,
+                            borderRadius: '50%',
+                            objectFit: 'cover',
+                            border: '1px solid rgba(255,193,7,0.3)',
+                            bgcolor: 'background.paper',
+                          }}
+                          onError={(e) => {
+                            e.target.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100&q=80';
+                          }}
+                        />
                         <Box>
                           <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary' }}>
                             {item.name}

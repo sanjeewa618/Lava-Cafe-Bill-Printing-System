@@ -155,7 +155,7 @@ const Signup = () => {
               </Grid>
             )}
 
-            <Grid item xs={12}>
+             <Grid item xs={12}>
               <TextField
                 id="signup-name"
                 name="name"
@@ -164,14 +164,6 @@ const Signup = () => {
                 onChange={handleChange}
                 fullWidth
                 required
-                sx={{
-                  '& .MuiInputBase-input': {
-                    '&:-webkit-autofill': {
-                      WebkitBoxShadow: '0 0 0 100px #1A1A1A inset',
-                      WebkitTextFillColor: '#fff',
-                    },
-                  },
-                }}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -192,14 +184,6 @@ const Signup = () => {
                 fullWidth
                 required
                 autoComplete="username"
-                sx={{
-                  '& .MuiInputBase-input': {
-                    '&:-webkit-autofill': {
-                      WebkitBoxShadow: '0 0 0 100px #1A1A1A inset',
-                      WebkitTextFillColor: '#fff',
-                    },
-                  },
-                }}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -221,14 +205,6 @@ const Signup = () => {
                 fullWidth
                 required
                 autoComplete="new-password"
-                sx={{
-                  '& .MuiInputBase-input': {
-                    '&:-webkit-autofill': {
-                      WebkitBoxShadow: '0 0 0 100px #1A1A1A inset',
-                      WebkitTextFillColor: '#fff',
-                    },
-                  },
-                }}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
