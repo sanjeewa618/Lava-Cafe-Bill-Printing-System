@@ -161,7 +161,7 @@ const Login = () => {
             fontSize: '1.35rem',
             fontWeight: 700,
             letterSpacing: '0.08em',
-            color: '#FFC107',
+            color: isDark ? '#FFC107' : '#000000',
             fontFamily: "'Outfit', monospace",
             lineHeight: 1.2,
           }}>
@@ -169,9 +169,10 @@ const Login = () => {
           </Typography>
           <Typography sx={{
             fontSize: '0.75rem',
-            color: isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.45)',
+            color: isDark ? 'rgba(255,255,255,0.6)' : '#000000',
             letterSpacing: '0.12em',
             mt: 0.3,
+            fontWeight: isDark ? 500 : 700,
           }}>
             {date}
           </Typography>
